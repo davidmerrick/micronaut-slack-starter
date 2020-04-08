@@ -4,7 +4,7 @@ import io.micronaut.function.executor.FunctionInitializer
 import io.micronaut.function.FunctionBean;
 import java.util.function.Function;
 
-@FunctionBean("app")
+@FunctionBean("pirate-translator")
 // 1
 class AppFunction : FunctionInitializer(), Function<HandlerInput, HandlerOutput> {
     val translator : PirateTranslator =  DefaultPirateTranslator()

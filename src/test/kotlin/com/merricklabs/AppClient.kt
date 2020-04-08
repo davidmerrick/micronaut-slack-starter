@@ -10,8 +10,7 @@ import javax.inject.Named
 interface AppClient {
 
     // 2
-    @Named("app")
+    @Named("pirate-translator")
     // 3
     fun apply(@Body body : HandlerInput): Single<HandlerOutput>
-
 }
