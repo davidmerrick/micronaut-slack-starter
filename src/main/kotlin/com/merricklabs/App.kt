@@ -1,19 +1,10 @@
 package com.merricklabs
 
-import com.amazonaws.services.lambda.runtime.Context
-import com.amazonaws.services.lambda.runtime.RequestHandler
+import io.micronaut.core.annotation.*
 
-// 1
-class App : RequestHandler<HandlerInput, HandlerOutput> {
-    // 2
-    val translator : PirateTranslator =   DefaultPirateTranslator()
-
-    // 3
-    override fun handleRequest(input: HandlerInput?, context: Context?): HandlerOutput {
-        input?.let {
-            // 4
-            return HandlerOutput(it.message, translator.translate(it.message))
-        }
-        return HandlerOutput("", "");
-    }
+@Introspected
+class App {
+	lateinit var name: String
 }
+
+

@@ -1,5 +1,3 @@
 package com.merricklabs
 
-class HandlerInput {
-    var message: String = ""
-}
+data class HandlerInput(val message: String)
