@@ -1,13 +1,12 @@
-package com.merricklabs;
+package com.merricklabs
 
+import io.micronaut.function.FunctionBean
 import io.micronaut.function.executor.FunctionInitializer
-import io.micronaut.function.FunctionBean;
-import java.util.function.Function;
+import java.util.function.Function
 
 @FunctionBean("pirate-translator")
-// 1
 class AppFunction : FunctionInitializer(), Function<HandlerInput, HandlerOutput> {
-    val translator : PirateTranslator =  DefaultPirateTranslator()
+    private val translator: PirateTranslator = DefaultPirateTranslator()
 
     override fun apply(input: HandlerInput): HandlerOutput {
         return HandlerOutput(input.message, translator.translate(input.message))
@@ -20,5 +19,5 @@ class AppFunction : FunctionInitializer(), Function<HandlerInput, HandlerOutput>
  */
 fun main(args : Array<String>) {
     val function = AppFunction()
-    function.run(args, { context -> function.apply(context.get(HandlerInput::class.java))})
+    function.run(args) { context -> function.apply(context.get(HandlerInput::class.java)) }
 }

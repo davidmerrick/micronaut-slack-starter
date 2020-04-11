@@ -1,6 +1,6 @@
 package com.merricklabs
 
-import io.micronaut.core.annotation.*
+import io.micronaut.core.annotation.Introspected
 
 @Introspected
 class App {
