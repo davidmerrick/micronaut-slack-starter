@@ -1,6 +1,6 @@
 repositories {
     mavenCentral()
-    jcenter()
+    maven(url = "https://jcenter.bintray.com")
 }
 
 plugins {
@@ -26,12 +26,12 @@ application {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.3.50")
-    implementation("io.micronaut:micronaut-runtime")
-    implementation("io.micronaut:micronaut-function-aws")
+    implementation("io.micronaut:micronaut-runtime:1.3.4")
+    implementation("io.micronaut:micronaut-function-aws:1.3.4")
     implementation("javax.annotation:javax.annotation-api")
     kapt(platform("io.micronaut:micronaut-bom:1.3.4"))
-    kapt("io.micronaut:micronaut-inject-java:1.3.4")
-    kapt("io.micronaut:micronaut-validation:1.3.4")
+    kapt("io.micronaut:micronaut-inject-java")
+    kapt("io.micronaut:micronaut-validation")
     kaptTest(platform("io.micronaut:micronaut-bom:1.3.4"))
     kaptTest("io.micronaut:micronaut-inject-java:1.3.4")
     runtimeOnly("com.amazonaws:aws-lambda-java-log4j2:1.0.0")
