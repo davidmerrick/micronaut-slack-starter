@@ -2,8 +2,8 @@
 
 Serverless Slack bot which tells you how long you've been quarantined in units of facemasks.
 
-* Kotlin
-* Built with superfast Micronaut framework
+* Written in Kotlin
+* Built with superfast [Micronaut](https://micronaut.io/) framework
 * Runs on AWS Lambda
 * Includes Terraform configs for deploying infrastructure
 
