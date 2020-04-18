@@ -24,15 +24,20 @@ application {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     implementation("io.micronaut:micronaut-runtime:$micronautVersion")
-    implementation("io.micronaut.aws:micronaut-function-aws-api-proxy:$micronautVersion")
+    implementation("io.micronaut.aws:micronaut-function-aws-api-proxy:$micronautVersion"){
+        exclude(group = "com.fasterxml.jackson.module", module = "jackson-module-afterburner")
+    }
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
+    implementation("org.slf4j:slf4j-api:1.7.30")
+    implementation("io.github.microutils:kotlin-logging:1.7.2")
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.9.1")
+    implementation("io.micronaut:micronaut-http-client:$micronautVersion")
 
     kapt(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     kapt("io.micronaut:micronaut-inject-java")
     kapt("io.micronaut:micronaut-validation")
 
     runtimeOnly("com.amazonaws:aws-lambda-java-log4j2:1.0.0")
-    runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.9.1")
 
     // Test
 
@@ -40,7 +45,6 @@ dependencies {
     kaptTest("io.micronaut:micronaut-inject-java:$micronautVersion")
 
     testImplementation("io.micronaut:micronaut-function-client:$micronautVersion")
-    testImplementation("io.micronaut:micronaut-http-client:$micronautVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.2")
     testImplementation("io.micronaut.test:micronaut-test-spock:$micronautTestVersion")
