@@ -1,13 +1,13 @@
 #!/bin/bash
 GRAALVM_HOME=${GRAALVM_HOME:=/usr/lib/graalvm}
-${GRAALVM_HOME}/bin/java -cp build/libs/quarantinebot.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer
+#${GRAALVM_HOME}/bin/java -cp build/libs/quarantinebot.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer
 ${GRAALVM_HOME}/bin/native-image --no-server \
              --class-path build/libs/quarantinebot.jar \
              -H:ReflectionConfigurationFiles=src/main/resources/reflect.json,src/main/resources/netty-reflect.json,build/reflect.json \
              -H:EnableURLProtocols=http \
-             -H:IncludeResources="logback.xml|application.yml|META-INF/services/*.*" \
+             -H:IncludeResources="logback.xml|application.yml" \
              -H:Name=server \
-             -H:Class=io.micronaut.function.aws.runtime.MicronautLambdaRuntime \
+             -H:Class=com.merricklabs.quarantinebot.StreamLambdaHandler \
              -H:+ReportUnsupportedElementsAtRuntime \
              -H:-AllowVMInspection \
              -H:-UseServiceLoaderFeature \

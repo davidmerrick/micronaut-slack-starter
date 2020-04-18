@@ -1,5 +1,6 @@
 package com.merricklabs.quarantinebot.external.slack
 
+import com.merricklabs.quarantinebot.config.QuarantineBotConfig
 import com.merricklabs.quarantinebot.external.slack.client.SlackClient
 import com.merricklabs.quarantinebot.external.slack.messages.CreateMessagePayload
 import com.merricklabs.quarantinebot.external.slack.messages.EventCallbackMessage
@@ -19,8 +20,8 @@ private val log = KotlinLogging.logger {}
 @Singleton
 class SlackMessageDispatcher {
 
-    // Todo: Hardcoding this for now
-    private val initialQuarantineDate: LocalDate = LocalDate.parse("2020-03-11")
+    @Inject
+    lateinit var config: QuarantineBotConfig
 
     @Inject
     lateinit var slackClient: SlackClient
@@ -46,7 +47,7 @@ class SlackMessageDispatcher {
             return
         }
         val replyText = if (message.event.text.toLowerCase().toRegex().matches("how long")) {
-            val numDays = abs(ChronoUnit.DAYS.between(LocalDate.now(), initialQuarantineDate))
+            val numDays = abs(ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(config.quarantineDateString)))
             "It's been this many days:\n${OutputFormatter.printFormattedCount(numDays.toInt())}"
         } else {
             "Usage:\n `how long`: Print how long you've been quarantined."

@@ -3,7 +3,11 @@ micronaut:
     name: com.merricklabs
 
 slack:
+  botName: quarantinebot
   token:
+
+quarantineBot:
+  quarantineDateString: 2020-03-11
 
 logger:
   levels:

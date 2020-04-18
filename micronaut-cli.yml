@@ -1,5 +1,0 @@
-profile: function-aws
-defaultPackage: com.merricklabs
----
-testFramework: spek
-sourceLanguage: kotlin
