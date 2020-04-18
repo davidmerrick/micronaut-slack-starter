@@ -18,13 +18,17 @@ val jacksonVersion by extra("2.9.10")
 
 application {
     mainClassName = "com.merricklabs.quarantinebot.Application"
-    applicationDefaultJvmArgs = listOf("")
+    applicationDefaultJvmArgs = emptyList()
 }
 
 dependencies {
+    compileOnly("org.graalvm.nativeimage:svm:20.0.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     implementation("io.micronaut:micronaut-runtime:$micronautVersion")
-    implementation("io.micronaut.aws:micronaut-function-aws-api-proxy:$micronautVersion"){
+    implementation("io.micronaut.aws:micronaut-function-aws-custom-runtime:$micronautVersion") {
+        exclude(group = "com.fasterxml.jackson.module", module = "jackson-module-afterburner")
+    }
+    implementation("io.micronaut.aws:micronaut-function-aws-api-proxy:$micronautVersion") {
         exclude(group = "com.fasterxml.jackson.module", module = "jackson-module-afterburner")
     }
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
@@ -36,6 +40,7 @@ dependencies {
     kapt(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     kapt("io.micronaut:micronaut-inject-java")
     kapt("io.micronaut:micronaut-validation")
+    kapt("io.micronaut:micronaut-graal:$micronautVersion")
 
     runtimeOnly("com.amazonaws:aws-lambda-java-log4j2:1.0.0")
 
@@ -50,7 +55,7 @@ dependencies {
     testImplementation("io.micronaut.test:micronaut-test-spock:$micronautTestVersion")
     testImplementation("io.micronaut.test:micronaut-test-kotlintest:$micronautTestVersion")
     testImplementation("io.micronaut.test:micronaut-test-junit5:$micronautTestVersion")
-    testImplementation("io.micronaut:micronaut-http-server-netty:$micronautVersion")
+    testRuntimeOnly("io.micronaut:micronaut-http-server-netty:$micronautVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.6.2")
     testImplementation("org.spekframework.spek2:spek-runner-junit5:2.0.8")
     testImplementation("io.micronaut:micronaut-function-web:$micronautVersion")
@@ -83,9 +88,17 @@ tasks {
         transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer::class.java)
     }
 
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+
     withType<Jar> {
         manifest {
             attributes["Main-Class"] = application.mainClassName
         }
+    }
+
+    withType<JavaExec> {
+        args = listOf("-noverify", "-XX:TieredStopAtLevel=1", "-Dcom.sun.management.jmxremote")
     }
 }

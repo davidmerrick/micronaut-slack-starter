@@ -2,8 +2,10 @@ package com.merricklabs.quarantinebot.external.slack.messages
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import io.micronaut.core.annotation.Introspected
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Introspected
 data class SlackEvent(
         val type: SlackEventType,
         val subtype: String?,
