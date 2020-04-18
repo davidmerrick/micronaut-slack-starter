@@ -1,6 +1,6 @@
-# micronaut-quarantinebot
+# quarantinebot
 
-Toy Slack bot to try out using Micronaut with AWS Lambda.
+Serverless Slack bot which tells you how long you've been quarantined in units of facemasks.
 
 # Running tests locally
 
