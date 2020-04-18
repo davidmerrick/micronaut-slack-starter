@@ -2,9 +2,9 @@ package com.merricklabs.quarantinebot.config
 
 import io.micronaut.context.annotation.ConfigurationProperties
 
-const val PREFIX = "quarantinebot"
+const val PREFIX = "quarantineBot"
 
 @ConfigurationProperties(PREFIX)
 class QuarantineBotConfig {
-    var quarantineDateString: String? = null
+    var quarantineDate: String? = null
 }
