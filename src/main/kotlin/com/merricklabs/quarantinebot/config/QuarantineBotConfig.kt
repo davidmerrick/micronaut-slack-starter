@@ -1,10 +1,11 @@
 package com.merricklabs.quarantinebot.config
 
 import io.micronaut.context.annotation.ConfigurationProperties
+import java.time.LocalDate
+import javax.validation.constraints.NotBlank
 
-const val PREFIX = "quarantineBot"
-
-@ConfigurationProperties(PREFIX)
-class QuarantineBotConfig {
-    var quarantineDate: String? = null
+@ConfigurationProperties("quarantineBot")
+interface QuarantineBotConfig {
+    @get:NotBlank
+    val quarantineDate: LocalDate
 }

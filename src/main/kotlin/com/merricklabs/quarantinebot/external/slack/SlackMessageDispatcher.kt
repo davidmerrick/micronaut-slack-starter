@@ -18,14 +18,10 @@ import kotlin.math.abs
 private val log = KotlinLogging.logger {}
 
 @Singleton
-class SlackMessageDispatcher {
-
-    @Inject
-    lateinit var config: QuarantineBotConfig
-
-    @Inject
-    lateinit var slackClient: SlackClient
-
+class SlackMessageDispatcher @Inject constructor(
+        private val slackClient: SlackClient,
+        private val config: QuarantineBotConfig
+) {
     fun dispatch(message: SlackMessage): HttpResponse<String> {
         log.info("Received Slack message of type ${message.type}")
         return when (message) {
@@ -47,7 +43,7 @@ class SlackMessageDispatcher {
             return
         }
         val replyText = if (message.event.text.toLowerCase().toRegex().matches("how long")) {
-            val numDays = abs(ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(config.quarantineDate)))
+            val numDays = abs(ChronoUnit.DAYS.between(LocalDate.now(), config.quarantineDate))
             "It's been this many days:\n${OutputFormatter.printFormattedCount(numDays.toInt())}"
         } else {
             "Usage:\n `how long`: Print how long you've been quarantined."
