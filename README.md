@@ -9,6 +9,22 @@ Serverless Slack bot which tells you how long you've been quarantined in units o
 
 ![screenshot](img/screenshot.png)
 
+# Creating a Slack bot
+
+This bot requires `Event Subscriptions`, `Bots`, and `Permissions`.
+
+## Event subscriptions
+
+Subscribe to `app_mention` and `message.im` events.
+
+## Permissions
+
+Add scopes for `app_mentions:read`, `im:history`, and `chat:write`.
+
+## Bots
+
+Enable `Always Show My Bot as Online`.
+
 # Running tests locally
 
 1. Do a `./gradlew build` to generate kapt annotations
