@@ -1,5 +1,0 @@
-[{
-  "name" : "com.merricklabs.quarantinebot.external.slack.SlackMessageDispatcher",
-  "allPublicMethods" : true,
-  "allDeclaredConstructors" : true
-}]

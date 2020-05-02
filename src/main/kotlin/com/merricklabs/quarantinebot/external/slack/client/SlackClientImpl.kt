@@ -9,13 +9,12 @@ import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import mu.KotlinLogging
-import javax.inject.Inject
 import javax.inject.Singleton
 
 private val log = KotlinLogging.logger {}
 
 @Singleton
-class SlackClientImpl @Inject constructor(
+class SlackClientImpl(
         private val slackConfig: SlackConfig,
         @Client(BASE_API_PATH) private val client: HttpClient
 ) : SlackClient {

@@ -7,8 +7,6 @@ import javax.validation.constraints.NotBlank
 
 @ConfigurationProperties("quarantineBot")
 @Singleton
-// Todo: Make this an interface when you can figure out
-// how to get it to play nice with Graal
 class QuarantineBotConfig {
     @get:NotBlank
     lateinit var quarantineDate: LocalDate
