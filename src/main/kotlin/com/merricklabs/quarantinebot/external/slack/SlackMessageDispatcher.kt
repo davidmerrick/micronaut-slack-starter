@@ -11,14 +11,13 @@ import io.micronaut.http.HttpResponse
 import mu.KotlinLogging
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
-import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.math.abs
 
 private val log = KotlinLogging.logger {}
 
 @Singleton
-class SlackMessageDispatcher @Inject constructor(
+class SlackMessageDispatcher(
         private val slackClient: SlackClient,
         private val config: QuarantineBotConfig
 ) {
