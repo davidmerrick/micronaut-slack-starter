@@ -15,7 +15,7 @@ This bot requires `Event Subscriptions`, `Bots`, and `Permissions`.
 
 ## Event subscriptions
 
-Subscribe to `app_mention` and `message.im` events.
+Subscribe to bot events: `app_mention`, `message.channels`, and `message.im`.
 
 ## Permissions
 
@@ -29,6 +29,12 @@ Enable `Always Show My Bot as Online`.
 
 1. Do a `./gradlew build` to generate kapt annotations
 2. Run tests as usual in IntelliJ
+
+# Running application locally
+
+Included in the build is Micronaut's Netty server.
+Invoke `./gradlew run` to start it on port 8080. 
+Make sure to set the `SLACK_TOKEN` environment variable to your Slack app's token.
 
 # Compilation and deployment with GraalVM
 

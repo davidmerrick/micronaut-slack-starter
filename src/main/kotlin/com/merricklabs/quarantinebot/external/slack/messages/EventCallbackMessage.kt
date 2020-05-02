@@ -1,5 +1,6 @@
 package com.merricklabs.quarantinebot.external.slack.messages
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import io.micronaut.core.annotation.Introspected
@@ -17,4 +18,7 @@ data class EventCallbackMessage(
         val event: SlackEvent
 ) : SlackMessage {
     override val type = MessageType.EVENT_CALLBACK
+
+    @JsonIgnore
+    fun isBotMessage() = event.subtype == "bot_message" || event.botId != null
 }

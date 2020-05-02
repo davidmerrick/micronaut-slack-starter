@@ -1,0 +1,14 @@
+{
+  "type": "event_callback",
+  "token": "D9pjJm3jkjzAWiRAJTFn1hlW",
+  "team_id": "TJLUEKYLV",
+  "api_app_id": "A012RGJANP8",
+  "event": {
+    "type": "message",
+    "user": "UJEKBGZ9P",
+    "text": "test",
+    "channel": "CJLDXPAA0",
+    "channel_type": "channel"
+  },
+  "type": "event_callback"
+}

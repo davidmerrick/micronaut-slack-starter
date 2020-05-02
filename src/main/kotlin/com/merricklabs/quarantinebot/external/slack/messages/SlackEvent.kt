@@ -18,7 +18,7 @@ data class SlackEvent(
         @JsonProperty("channel")
         val channel: String,
         @JsonProperty("channel_type")
-        val channelType: String,
+        val channelType: ChannelType,
         @JsonProperty("bot_id")
         val botId: String?
 )
