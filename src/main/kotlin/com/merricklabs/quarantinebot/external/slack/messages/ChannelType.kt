@@ -1,13 +1,12 @@
 package com.merricklabs.quarantinebot.external.slack.messages
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import io.micronaut.core.annotation.Introspected
 
-const val CHANNEL_STRING = "channel"
-const val IM_STRING = "im"
-
+@Introspected
 enum class ChannelType {
-    @JsonProperty(CHANNEL_STRING)
+    @JsonProperty("channel")
     CHANNEL,
-    @JsonProperty(IM_STRING)
+    @JsonProperty("im")
     IM
 }

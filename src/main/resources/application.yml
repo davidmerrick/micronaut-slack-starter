@@ -3,6 +3,8 @@ micronaut:
     name: quarantinebot
 
 jackson:
+  mapper:
+    ACCEPT_CASE_INSENSITIVE_ENUMS: true
   bean-introspection-module: true
   serializationInclusion: NON_NULL
   deserialization:
