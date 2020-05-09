@@ -23,6 +23,8 @@ class SlackMessageHandler(
                 log.info("Handling event callback message")
                 if (!message.isBotMessage()) {
                     eventHandler.handle(message.event)
+                } else {
+                    log.info("Skipping bot message")
                 }
                 null
             }

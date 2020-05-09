@@ -8,7 +8,7 @@ import io.micronaut.core.annotation.Introspected
 @Introspected
 data class SlackEvent(
         @JsonProperty("type")
-        val type: String,
+        val type: SlackEventType,
         @JsonProperty("subtype")
         val subtype: String?,
         @JsonProperty("user")
@@ -18,7 +18,7 @@ data class SlackEvent(
         @JsonProperty("channel")
         val channel: String,
         @JsonProperty("channel_type")
-        val channelType: ChannelType,
+        val channelType: ChannelType?,
         @JsonProperty("bot_id")
         val botId: String?
 )

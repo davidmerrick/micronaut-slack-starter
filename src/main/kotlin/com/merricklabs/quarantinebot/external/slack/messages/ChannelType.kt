@@ -7,6 +7,8 @@ import io.micronaut.core.annotation.Introspected
 enum class ChannelType {
     @JsonProperty("channel")
     CHANNEL,
+    @JsonProperty("group")
+    GROUP,
     @JsonProperty("im")
     IM
 }
