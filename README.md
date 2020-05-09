@@ -11,7 +11,7 @@ Serverless Slack bot which tells you how long you've been quarantined in units o
 
 # Creating a Slack bot
 
-This bot requires `Event Subscriptions`, `Bots`, and `Permissions`.
+Create an app via https://api.slack.com/. Add it to your workspace.
 
 ## Event subscriptions
 
