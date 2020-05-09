@@ -14,24 +14,23 @@ class SlackMessageHandler(
 ) {
     fun handle(message: SlackMessage): String? {
         log.info("Received Slack message of type ${message.type}")
-        return when (message) {
+        when (message) {
             is SlackChallenge -> run {
                 log.info("Handling Slack challenge message")
-                message.challenge
+                return message.challenge
             }
             is EventCallbackMessage -> run {
                 log.info("Handling event callback message")
-                if (!message.isBotMessage()) {
-                    eventHandler.handle(message.event)
-                } else {
+                if (message.isBotMessage()) {
                     log.info("Skipping bot message")
+                    return null
                 }
-                null
+                eventHandler.handle(message.event)
             }
             else -> run {
                 log.warn("Unhandled Slack message type ${message.type}")
-                null
             }
         }
+        return null
     }
 }

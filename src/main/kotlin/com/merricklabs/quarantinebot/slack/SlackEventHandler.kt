@@ -37,7 +37,7 @@ class SlackEventHandler(
     private fun handleChannelEvent(event: SlackEvent) {
         log.info("Handling channel event")
         if (event.type != SlackEventType.APP_MENTION && !event.text.contains(slackConfig.botName, true)) {
-            log.info("Text \"${event.text}\" does not contain ${slackConfig.botName}, skipping")
+            log.info("Text does not contain ${slackConfig.botName}, skipping")
             return
         }
 
