@@ -24,11 +24,21 @@ class SlackClientImpl(
                 payload
         )
         request.headers.add("Authorization", "Bearer ${slackConfig.token}")
-        val response = client.toBlocking().retrieve(request, HttpStatus::class.java)
-        if (response != HttpStatus.OK) {
+        val response = client.toBlocking()
+                .exchange(request, SlackResponse::class.java)
+        if (response.status != HttpStatus.OK) {
             log.error("Received bad status from Slack: $response")
         } else {
-            log.info("Success: Posted response to Slack")
+            val body = response.body.orElseThrow { RuntimeException("Slack didn't return a response") }
+            handleResponse(body)
         }
+    }
+
+    private fun handleResponse(response: SlackResponse) {
+        response.error?.let {
+            log.error(it)
+            return
+        }
+        log.info("Success: Posted response to Slack")
     }
 }

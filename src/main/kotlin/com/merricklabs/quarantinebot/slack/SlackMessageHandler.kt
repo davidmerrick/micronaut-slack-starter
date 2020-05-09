@@ -1,4 +1,4 @@
-package com.merricklabs.quarantinebot.external.slack
+package com.merricklabs.quarantinebot.slack
 
 import com.merricklabs.quarantinebot.external.slack.messages.EventCallbackMessage
 import com.merricklabs.quarantinebot.external.slack.messages.SlackChallenge
@@ -15,9 +15,13 @@ class SlackMessageHandler(
     fun handle(message: SlackMessage): String? {
         log.info("Received Slack message of type ${message.type}")
         return when (message) {
-            is SlackChallenge -> message.challenge
+            is SlackChallenge -> run {
+                log.info("Handling Slack challenge message")
+                message.challenge
+            }
             is EventCallbackMessage -> run {
-                if(!message.isBotMessage()){
+                log.info("Handling event callback message")
+                if (!message.isBotMessage()) {
                     eventHandler.handle(message.event)
                 }
                 null

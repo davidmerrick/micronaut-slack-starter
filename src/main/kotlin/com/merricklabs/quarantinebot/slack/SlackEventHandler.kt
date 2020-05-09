@@ -1,4 +1,4 @@
-package com.merricklabs.quarantinebot.external.slack
+package com.merricklabs.quarantinebot.slack
 
 import com.merricklabs.quarantinebot.config.QuarantineBotConfig
 import com.merricklabs.quarantinebot.config.SlackConfig
@@ -47,6 +47,7 @@ class SlackEventHandler(
     private fun postReply(event: SlackEvent) {
         val replyText = getReplyText(event)
 
+        log.info("Posting reply: $replyText")
         val reply = CreateMessagePayload(
                 event.channel,
                 replyText

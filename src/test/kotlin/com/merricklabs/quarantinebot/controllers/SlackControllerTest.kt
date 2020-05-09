@@ -10,7 +10,6 @@ import io.kotlintest.shouldBe
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.HttpClient
-import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.test.annotation.MicronautTest
 import io.micronaut.test.annotation.MockBean
@@ -66,7 +65,7 @@ class SlackControllerTest {
                         "user" to "foo",
                         "text" to "how long",
                         "channel" to "banana",
-                        "channel_type" to "banana"
+                        "channel_type" to "channel"
                 )
         )
 
