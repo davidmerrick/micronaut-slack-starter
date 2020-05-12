@@ -1,9 +1,7 @@
-# quarantinebot
+# Micronaut Slack Starter
 
-Serverless Slack bot which tells you how long you've been quarantined in units of facemasks.
+Starter project for a Micronaut Slack app, written in Kotlin. This is forked from my [quarantinebot](https://github.com/davidmerrick/quarantinebot) project.
 
-* Written in Kotlin
-* Built with superfast [Micronaut](https://micronaut.io/) framework
 * Includes a Dockerfile for building with GraalVM for blazing-fast startup time on AWS Lambda.
 * Includes Terraform configs for deploying infrastructure
 
