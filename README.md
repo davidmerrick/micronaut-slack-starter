@@ -2,8 +2,11 @@
 
 Starter project for a Micronaut Slack app, written in Kotlin. This is forked from my [quarantinebot](https://github.com/davidmerrick/quarantinebot) project.
 
-* Includes a Dockerfile for building with GraalVM for blazing-fast startup time on AWS Lambda.
-* Includes Terraform configs for deploying infrastructure
+Includes:
+* Dockerfile for building with GraalVM for blazing-fast cold start time on AWS Lambda.
+* Terraform configs for deploying infrastructure.
+* Netty server for running locally.
+* Health check endpoint.
 
 ![screenshot](img/screenshot.png)
 
